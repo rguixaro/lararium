@@ -18,20 +18,20 @@ and intuitive way.
 
 ## Features
 
-- **Family tree management** — create, edit, and visualize family trees with an
+- **Family tree management**: create, edit, and visualize family trees with an
   interactive graph powered by React Flow and Dagre layout
-- **Collaborative access** — invite members with role-based permissions (admin,
+- **Collaborative access**: invite members with role-based permissions (admin,
   editor, viewer)
-- **Photo gallery** — upload photos, tag family members, and set profile pictures
+- **Photo gallery**: upload photos, tag family members, and set profile pictures
   with automatic EXIF metadata extraction (dates, GPS, camera info)
-- **Insights** — upcoming birthdays, death anniversaries, and weekly memory
+- **Insights**: upcoming birthdays, death anniversaries, and weekly memory
   highlights
-- **Activity timeline** — chronological feed of all tree changes (members added,
+- **Activity timeline**: chronological feed of all tree changes (members added,
   relationships created, photos uploaded)
-- **Weekly newsletter** — automated emails with upcoming milestones and recent
+- **Weekly newsletter**: automated emails with upcoming milestones and recent
   tree activity via AWS SES
-- **i18n** — English, Spanish, and Catalan
-- **Auth** — Google OAuth via Auth.js
+- **i18n**: English, Spanish, and Catalan
+- **Auth**: Google OAuth via Auth.js
 
 ## Getting Started
 

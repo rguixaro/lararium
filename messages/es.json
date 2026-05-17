@@ -66,7 +66,7 @@
     "union-delete-description": "¿Seguro que quieres eliminar este matrimonio?",
     "union-delete-children-warning": "{count, plural, one {# hijo/a vinculado/a perderá su vínculo familiar} other {# hijos/as vinculados/as perderán su vínculo familiar}}",
     "child-detach-title": "Desvincular hijo/a",
-    "child-detach-description": "¿Seguro que quieres desvincular a este hijo/a? Ya no aparecerá bajo esta familia — el miembro permanece en el árbol.",
+    "child-detach-description": "¿Seguro que quieres desvincular a este hijo/a? Ya no aparecerá bajo esta familia, el miembro permanece en el árbol.",
     "node-picture-uploaded": "Imagen subida con éxito",
     "node-picture-tag-added": "Etiqueta añadida con éxito",
     "node-picture-tag-removed": "Etiqueta eliminada con éxito",

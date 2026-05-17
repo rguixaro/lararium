@@ -25,7 +25,7 @@ export async function TreeInfoPictures({ info }: PicturesProps) {
   }
 
   const membersPhotographed = Math.max(0, totalMembers - p.untaggedPeople)
-  const avgPerMember = membersPhotographed > 0 ? (p.total / membersPhotographed).toFixed(1) : '—'
+  const avgPerMember = membersPhotographed > 0 ? (p.total / membersPhotographed).toFixed(1) : '-'
 
   return (
     <Section title={t('pictures-title')} icon={Camera}>

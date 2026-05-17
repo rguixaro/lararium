@@ -2,12 +2,6 @@ import { describe, it, expect } from 'vitest'
 
 import { isTreeDetailRoute } from './helpers'
 
-/**
- * `isTreeDetailRoute` gates header visibility — it should only return true
- * for the full-screen graph view (`/trees/view/[slug]`), which has its own
- * overlay nav. Every other tree route (hub, timeline, logs, settings) keeps
- * the global header.
- */
 describe('isTreeDetailRoute', () => {
   it('matches the graph view route', () => {
     expect(isTreeDetailRoute('/trees/view/family-slug')).toBe(true)

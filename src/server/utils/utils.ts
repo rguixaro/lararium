@@ -27,7 +27,6 @@ export function calculateDaysUntil(date: Date, options?: { ignoreYear?: boolean 
 
   if (options?.ignoreYear) {
     let targetDate = new Date(today.getFullYear(), date.getMonth(), date.getDate())
-    // Handle Feb 29 in non-leap years — clamp to Feb 28
     if (date.getMonth() === 1 && date.getDate() === 29 && targetDate.getMonth() !== 1) {
       targetDate = new Date(today.getFullYear(), 1, 28)
     }

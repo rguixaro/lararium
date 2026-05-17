@@ -66,7 +66,7 @@
     "union-delete-description": "Are you sure you want to delete this marriage?",
     "union-delete-children-warning": "{count, plural, one {# attached child will lose its family grouping} other {# attached children will lose their family grouping}}",
     "child-detach-title": "Detach child",
-    "child-detach-description": "Are you sure you want to detach this child? They'll no longer appear under this family — the member itself stays in the tree.",
+    "child-detach-description": "Are you sure you want to detach this child? They'll no longer appear under this family, the member itself stays in the tree.",
     "node-picture-uploaded": "Image uploaded successfully",
     "node-picture-tag-added": "Tag added successfully",
     "node-picture-tag-removed": "Tag removed successfully",

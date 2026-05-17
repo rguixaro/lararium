@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect, useCallback, useRef } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import {
   useReactFlow,
   useNodesState,
@@ -67,7 +67,7 @@ export function useTreeState(
 
   const [viewingOptionsShown, setViewingOptionsShown] = useState(false)
   const [focusOnNode, setFocusOnNode] = useState<string | null>(null)
-  const pendingFocusRef = useRef<string | null>(null)
+  const [pendingFocusNodeId, setPendingFocusNodeId] = useState<string | null>(null)
   const [generationsUp, setGenerationsUp] = useState(initialGenerationsUp)
   const [generationsDown, setGenerationsDown] = useState(initialGenerationsDown)
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set())
@@ -311,7 +311,7 @@ export function useTreeState(
     setShowAllNodes(false)
     setExpandedNodes(new Set())
     setViewingOptionsShown(true)
-    pendingFocusRef.current = nodeId
+    setPendingFocusNodeId(nodeId)
   }, [])
 
   /**
@@ -484,7 +484,7 @@ export function useTreeState(
 
   // one RAF lets React Flow measure the node DOM before we center on it
   useEffect(() => {
-    const target = pendingFocusRef.current
+    const target = pendingFocusNodeId
     if (!target) return
     const node = treeNodes.find((n) => n.id === target)
     if (!node) return
@@ -496,10 +496,10 @@ export function useTreeState(
         measured.position.y + (measured.height ?? 0) / 2,
         { zoom: 1, duration: 300 }
       )
-      pendingFocusRef.current = null
+      setPendingFocusNodeId(null)
     })
     return () => cancelAnimationFrame(raf)
-  }, [treeNodes, reactFlowInstance])
+  }, [pendingFocusNodeId, treeNodes, reactFlowInstance])
 
   /**
    * Update node and edge data when expandedNodes changes (without recalculating layout)

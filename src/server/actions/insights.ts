@@ -352,7 +352,7 @@ function computeGenerationDepth(nodeIds: string[], parentsOf: Map<string, string
 
   function depth(id: string): number {
     if (memo.has(id)) return memo.get(id)!
-    if (visiting.has(id)) return 1 // cycle guard — treat as leaf
+    if (visiting.has(id)) return 1
     visiting.add(id)
     const parents = parentsOf.get(id) ?? []
     const d = parents.length === 0 ? 1 : 1 + Math.max(...parents.map(depth))

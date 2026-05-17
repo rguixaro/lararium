@@ -88,13 +88,6 @@
   }
 }
 
-/* Edges are non-interactive: every action goes through the buttons
-   rendered by the edge components inside `EdgeLabelRenderer`. Disabling
-   pointer events on the SVG edge layer makes mouse events fall through
-   to the pane underneath, so click + drag on a line pans the canvas
-   exactly like dragging the background — no fake-clickable cursor, no
-   stray click handlers. The buttons live in a separate React Flow
-   portal with their own `pointer-events: auto`, so they stay clickable. */
 .react-flow__edge {
   pointer-events: none;
   cursor: default;

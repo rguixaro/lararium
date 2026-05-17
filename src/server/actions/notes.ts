@@ -30,7 +30,7 @@ const isTreeWriteError = (error: unknown) => {
  * Create or update the singleton shared note for a tree.
  * Auth + EDITOR/ADMIN role required.
  *
- * Writes a debounced NOTE_UPDATED activity log — consecutive saves by the same
+ * Writes a debounced NOTE_UPDATED activity log, consecutive saves by the same
  * user within ACTIVITY_LOG_DEBOUNCE_MIN minutes only produce a single log entry.
  */
 export const updateTreeNote = async (input: {
@@ -57,15 +57,13 @@ export const updateTreeNote = async (input: {
     await assertRole(treeId, userId, ['EDITOR', 'ADMIN'])
     await assertTreeWritable(treeId)
 
-    // Upsert by unique treeId — first edit creates the row, subsequent edits update it.
+    // Upsert by unique treeId
     await db.treeNote.upsert({
       where: { treeId },
       create: { treeId, content, updatedById: userId },
       update: { content, updatedById: userId },
     })
 
-    // Debounced activity log — skip if this user already logged a NOTE_UPDATED
-    // on this tree within the debounce window.
     const since = new Date(Date.now() - ACTIVITY_LOG_DEBOUNCE_MIN * 60 * 1000)
     const recent = await db.activityLog.findFirst({
       where: {
