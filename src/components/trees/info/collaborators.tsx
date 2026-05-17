@@ -60,7 +60,7 @@ export async function TreeInfoCollaborators({ info }: CollaboratorsProps) {
               </div>
             )}
             <div className="flex w-full flex-col gap-0.5">
-              <p className="truncate text-sm font-bold">{c.name || c.email || '—'}</p>
+              <p className="truncate text-sm font-bold">{c.name || c.email || '-'}</p>
               <p className="text-xs font-medium opacity-80">
                 {t(`collaborators-role-${c.role.toLowerCase()}`)}
               </p>

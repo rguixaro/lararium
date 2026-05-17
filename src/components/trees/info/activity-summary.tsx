@@ -46,7 +46,7 @@ export async function TreeInfoActivitySummary({ info }: ActivitySummaryProps) {
               <MemberRow
                 key={c.userId}
                 picture={c.image}
-                name={c.name || '—'}
+                name={c.name || '-'}
                 primaryText={t('activity-contribution-count', { count: c.count })}
                 trailing={
                   <div className="w-24">

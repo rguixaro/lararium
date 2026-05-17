@@ -19,7 +19,7 @@ export function formatGreetingDate(date: Date, locale: string) {
 
 /**
  * Time-of-day greeting with today's date, localized.
- * Mounts on the client so the hour matches the user's local timezone —
+ * Mounts on the client so the hour matches the user's local timezone.
  * SSR renders a minimal placeholder to avoid layout shift.
  */
 export function Greeting({ username }: GreetingProps) {

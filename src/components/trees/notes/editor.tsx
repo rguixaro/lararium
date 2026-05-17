@@ -72,7 +72,7 @@ export function TreeNotesEditor({ treeId, initialContent, canEdit }: TreeNotesEd
     }
   }
 
-  // Read-only branch (VIEWER) — no textarea, just rendered text or empty state.
+  // Read-only branch (VIEWER).
   if (!canEdit) {
     if (!initialContent.trim()) {
       return (
@@ -91,7 +91,7 @@ export function TreeNotesEditor({ treeId, initialContent, canEdit }: TreeNotesEd
     )
   }
 
-  // Edit branch (EDITOR/ADMIN) — textarea, counter, save button.
+  // Edit branch (EDITOR/ADMIN).
   return (
     <div className="flex flex-col gap-3">
       <textarea

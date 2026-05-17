@@ -66,7 +66,7 @@
     "union-delete-description": "Segur que vols eliminar aquest matrimoni?",
     "union-delete-children-warning": "{count, plural, one {# fill/a vinculat/da perdrà el seu vincle familiar} other {# fills/es vinculats/des perdran el seu vincle familiar}}",
     "child-detach-title": "Desvincular fill/a",
-    "child-detach-description": "Segur que vols desvincular aquest fill/a? Ja no apareixerà sota aquesta família — el membre seguirà a l'arbre.",
+    "child-detach-description": "Segur que vols desvincular aquest fill/a? Ja no apareixerà sota aquesta família, el membre seguirà a l'arbre.",
     "node-picture-uploaded": "Imatge pujada amb èxit",
     "node-picture-tag-added": "Etiqueta afegida amb èxit",
     "node-picture-tag-removed": "Etiqueta eliminada amb èxit",
