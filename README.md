@@ -50,8 +50,8 @@ and intuitive way.
 1. Clone the repository and install dependencies:
 
    ```bash
-   git clone https://github.com/rguixaro/roots-app.git
-   cd roots-app
+   git clone https://github.com/rguixaro/lararium.git
+   cd lararium
    pnpm install
    ```
 
