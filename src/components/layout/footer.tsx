@@ -27,7 +27,7 @@ export const Footer = () => {
             {t_common('app-status')} <b className="text-ocean-400">{t_common('app-beta')}</b>.{' '}
             {`${t_common('app-issues')} `}
             <Link
-              href="https://github.com/rguixaro/roots-app/issues/new/choose"
+              href="https://github.com/rguixaro/lararium/issues/new/choose"
               className="text-ocean-400 font-semibold underline decoration-dotted underline-offset-4"
             >
               {t_common('app-ticket')}
