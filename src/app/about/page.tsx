@@ -75,7 +75,7 @@ export default async function AboutPage() {
             })}
           </p>
           <Link
-            href="https://github.com/rguixaro/roots-app"
+            href="https://github.com/rguixaro/lararium"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
