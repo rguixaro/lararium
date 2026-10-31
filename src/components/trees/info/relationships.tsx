@@ -14,10 +14,9 @@ interface RelationshipsProps {
 export async function TreeInfoRelationships({ info }: RelationshipsProps) {
   const t = await getTranslations('tree-info')
   const r = info.relationships
-  const suffix = info.tree.type === 'ANIMAL' ? '-animal' : ''
-  const childrenCountKey = `relationships-children-count${suffix}` as const
-  const mostChildrenKey = `relationships-most-children${suffix}` as const
-  const avgChildrenKey = `relationships-avg-children${suffix}` as const
+  const childrenCountKey = 'relationships-children-count' as const
+  const mostChildrenKey = 'relationships-most-children' as const
+  const avgChildrenKey = 'relationships-avg-children' as const
 
   if (info.overview.totalEdges === 0 && r.isolatedNodes === info.overview.totalMembers) {
     return (

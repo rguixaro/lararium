@@ -103,7 +103,7 @@ function getUnionLifeDateError(
 }
 
 type TreeAdminRecipient = {
-  user: { email: string | null; name: string | null; language?: 'CA' | 'ES' | 'EN' | null }
+  user: { email: string | null; name: string | null; language?: 'UR' | 'EN' | null }
 }
 
 async function sendDeletionRequestedEmails({
@@ -240,7 +240,6 @@ export const createTree = async (values: z.infer<typeof CreateTreeSchema>): Prom
       data: {
         slug: slugify(values.name),
         name: values.name,
-        type: values.type,
         newsletter: values.newsletter,
         accesses: { create: { userId, role: 'ADMIN' } },
       },
@@ -288,7 +287,6 @@ export const updateTree = async (
       where: { id },
       data: {
         name: values.name,
-        type: values.type,
         newsletter: values.newsletter,
         slug: slugify(values.name),
       },
@@ -299,7 +297,7 @@ export const updateTree = async (
       },
     })
 
-    const changes = getChanges(prevTree, values, ['name', 'type', 'newsletter'])
+    const changes = getChanges(prevTree, values, ['name', 'newsletter'])
 
     if (changes) {
       await db.activityLog.create({

@@ -38,7 +38,6 @@ const tree = (): Tree => ({
   id: 't1',
   slug: 'tree',
   name: 'Tree',
-  type: 'HUMAN',
   newsletter: false,
   createdAt: new Date(0),
   updatedAt: new Date(0),

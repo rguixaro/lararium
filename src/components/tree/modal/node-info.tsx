@@ -23,14 +23,13 @@ import { ConfirmDialog, Form, Picture, TypographyH4 } from '@/ui'
 
 import { checkKeyDown, cn } from '@/utils'
 
-import { TreeNode, TreeType, Union } from '@/types'
+import { TreeNode, Union } from '@/types'
 
 interface NodeInfoModalProps {
   readonly: boolean
   canExportGallery: boolean
   showModal: boolean
   treeSlug: string
-  treeType: TreeType
   node: TreeNode | null
   nodes: TreeNode[]
   unions: Union[]
@@ -45,7 +44,6 @@ export function NodeInfoModal({
   canExportGallery,
   showModal,
   treeSlug,
-  treeType,
   node,
   nodes,
   unions,
@@ -226,7 +224,6 @@ export function NodeInfoModal({
                   <Tabs.Content value="general">
                     <NodeInfoTabGeneral
                       readonly={readonly}
-                      treeType={treeType}
                       node={node}
                       nodes={nodes}
                       unions={unions}
@@ -256,7 +253,6 @@ export function NodeInfoModal({
                     <Tabs.Content value="gallery">
                       <NodeGalleryContent
                         readonly={readonly}
-                        treeType={treeType}
                         pictures={pictureOps.pictures}
                         loadingPictures={pictureOps.loadingPictures}
                         loading={loading}
@@ -303,7 +299,6 @@ export function NodeInfoModal({
             >
               <NodeGalleryContent
                 readonly={readonly}
-                treeType={treeType}
                 pictures={pictureOps.pictures}
                 loadingPictures={pictureOps.loadingPictures}
                 loading={loading}
@@ -363,7 +358,6 @@ export function NodeInfoModal({
       {pictureOps.expandedPicture && (
         <PictureFullscreenModal
           picture={pictureOps.expandedPicture}
-          treeType={treeType}
           onClose={pictureOps.onPictureShrink}
         />
       )}

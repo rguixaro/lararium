@@ -10,7 +10,7 @@ import { toast } from 'sonner'
 import { type z } from 'zod'
 import * as Tabs from '@radix-ui/react-tabs'
 
-import { CreateTreeSchema, TreeType } from '@/server/schemas'
+import { CreateTreeSchema } from '@/server/schemas'
 import {
   approveTreeDeletion,
   cancelTreeDeletion,
@@ -279,7 +279,6 @@ export const EditTree = ({ userId: currentUserId, tree }: EditTreeProps) => {
     resolver: zodResolver(CreateTreeSchema),
     defaultValues: {
       name: currentTree.name,
-      type: currentTree.type as TreeType,
       newsletter: currentTree.newsletter,
       members: currentTree.accesses?.map((a) => ({
         userId: a.userId,
@@ -418,7 +417,6 @@ export const EditTree = ({ userId: currentUserId, tree }: EditTreeProps) => {
     setCurrentTree(tree)
     form.reset({
       name: tree.name,
-      type: tree.type,
       newsletter: tree.newsletter,
       members: tree.accesses?.map((a) => ({
         userId: a.userId,
@@ -482,30 +480,6 @@ export const EditTree = ({ userId: currentUserId, tree }: EditTreeProps) => {
                   )}
                 />
                 <div className="bg-ocean-200/15 mx-auto my-3 h-1 w-full rounded" />
-                <FormField
-                  control={form.control}
-                  name="type"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>{t_trees('tree-types')}</FormLabel>
-                      <FormDescription className="text-sm opacity-70">
-                        {t_trees('tree-types-info')}
-                      </FormDescription>
-                      <FormControl>
-                        <StyledSelector
-                          types={TreeType}
-                          value={form.getValues('type')}
-                          setValue={(value) => form.setValue('type', value as TreeType)}
-                          disabled
-                        />
-                      </FormControl>
-                      <FormMessage />
-                      <FormDescription className="opacity-70">
-                        {t_trees('tree-types-alert')}
-                      </FormDescription>
-                    </FormItem>
-                  )}
-                />
               </div>
               <div className="my-5">
                 <Button

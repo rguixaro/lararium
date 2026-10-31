@@ -74,7 +74,7 @@ export function useTreeState(
   const [showAllNodes, setShowAllNodes] = useState(true)
 
   const viewingOptionsEnabled =
-    enableProgressiveDisclosure && tree.type !== 'ANIMAL' && allNodes.length > 6
+    enableProgressiveDisclosure && allNodes.length > 6
 
   /**
    * Calculate visible nodes based on progressive disclosure settings

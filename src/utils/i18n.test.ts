@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest'
 
 import { ActivityAction } from '@/types/activity.type'
 
-const LOCALES = ['en', 'es', 'ca'] as const
+const LOCALES = ['en', 'ur'] as const
 const messagesDir = join(__dirname, '../../messages')
 
 const loadLocale = (locale: string): Record<string, any> =>

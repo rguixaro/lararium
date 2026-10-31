@@ -14,7 +14,6 @@ export async function TreeInfoDemographics({ info }: DemographicsProps) {
   const t = await getTranslations('tree-info')
   const t_trees = await getTranslations('trees')
   const demo = info.demographics
-  const suffix = info.tree.type === 'ANIMAL' ? '-animal' : ''
 
   if (info.overview.totalMembers === 0) {
     return (
@@ -26,12 +25,12 @@ export async function TreeInfoDemographics({ info }: DemographicsProps) {
 
   const genderSegments = [
     {
-      label: t_trees(`node-gender-male${suffix}` as 'node-gender-male'),
+      label: t_trees('node-gender-male'),
       value: demo.genderBreakdown.MALE,
       color: 'bg-ocean-300',
     },
     {
-      label: t_trees(`node-gender-female${suffix}` as 'node-gender-female'),
+      label: t_trees('node-gender-female'),
       value: demo.genderBreakdown.FEMALE,
       color: 'bg-ocean-400',
     },

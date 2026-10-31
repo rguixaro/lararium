@@ -11,7 +11,6 @@ import {
 
 const validTree = {
   name: 'My Family Tree',
-  type: 'HUMAN' as const,
 }
 
 const validProfile = {
@@ -61,18 +60,6 @@ describe('CreateTreeSchema', () => {
     expect(CreateTreeSchema.safeParse({ ...validTree, name: 'a'.repeat(24) }).success).toBe(true)
   })
 
-  it('accepts all valid tree types', () => {
-    for (const type of ['HUMAN', 'ANIMAL']) {
-      const result = CreateTreeSchema.safeParse({ ...validTree, type })
-      expect(result.success).toBe(true)
-    }
-  })
-
-  it('rejects invalid tree type', () => {
-    const result = CreateTreeSchema.safeParse({ ...validTree, type: 'PLANT' })
-    expect(result.success).toBe(false)
-  })
-
   it('accepts optional newsletter boolean', () => {
     const result = CreateTreeSchema.safeParse({ ...validTree, newsletter: true })
     expect(result.success).toBe(true)
@@ -109,7 +96,7 @@ describe('UpdateProfileSchema', () => {
   })
 
   it('accepts all valid languages', () => {
-    for (const language of ['CA', 'ES', 'EN']) {
+    for (const language of ['UR', 'EN']) {
       const result = UpdateProfileSchema.safeParse({ ...validProfile, language })
       expect(result.success).toBe(true)
     }

@@ -33,12 +33,12 @@ export function ItemTree({ tree, index }: { tree: TreeFeedItem; index: number })
         className="text-ocean-400 group bg-pale-ocean flex items-center gap-4 px-4 py-4"
       >
         <div className="bg-ocean-100/60 flex h-10 w-10 shrink-0 items-center justify-center rounded-full">
-          <Icon type={tree.type} size={18} className="stroke-ocean-300" />
+          <Icon type="human" size={18} className="stroke-ocean-300" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="truncate text-base font-extrabold">{tree.name}</div>
           <div className="flex items-center gap-2 text-xs opacity-70">
-            <span>{t_enums(tree.type.toLowerCase())}</span>
+            <span>{t_enums('human')}</span>
             {typeof tree.memberCount === 'number' && (
               <>
                 <span>·</span>

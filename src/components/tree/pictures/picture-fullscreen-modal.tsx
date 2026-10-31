@@ -7,19 +7,17 @@ import { Icon } from '@/components/trees/icon'
 
 import { Picture } from '@/ui'
 
-import { Picture as PictureType, TreeType } from '@/types'
+import { Picture as PictureType } from '@/types'
 
 import { cn } from '@/utils'
 
 interface PictureFullscreenModalProps {
   picture: PictureType
-  treeType: TreeType
   onClose: () => void
 }
 
 export function PictureFullscreenModal({
   picture,
-  treeType,
   onClose,
 }: PictureFullscreenModalProps) {
   const [isTapped, setIsTapped] = useState(false)
@@ -74,7 +72,7 @@ export function PictureFullscreenModal({
       >
         <span>{picture.date?.toLocaleDateString()}</span>
         <div className="flex cursor-pointer items-center space-x-2">
-          <Icon size={24} type={treeType} className="stroke-ocean-400" />
+          <Icon size={24} type="human" className="stroke-ocean-400" />
           <span>{picture.tags?.length}</span>
         </div>
       </div>

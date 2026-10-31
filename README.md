@@ -1,9 +1,7 @@
-# <img src="public/favicon.svg" alt="Roots" height="28"> Roots
+# <img src="public/favicon.svg" alt="Kinship" height="28"> Kinship
 
-A web application to build, visualize, and share family trees in a collaborative
-and intuitive way.
-
-**[roots.rguixaro.dev](https://roots.rguixaro.dev)**
+A bilingual (English / Urdu) web application to build, visualize, and share family
+trees in a collaborative and intuitive way.
 
 ## Tech Stack
 
@@ -19,7 +17,7 @@ and intuitive way.
 ## Features
 
 - **Family tree management**: create, edit, and visualize family trees with an
-  interactive graph powered by React Flow and Dagre layout
+  interactive graph powered by React Flow and a generation-aware layout
 - **Collaborative access**: invite members with role-based permissions (admin,
   editor, viewer)
 - **Photo gallery**: upload photos, tag family members, and set profile pictures
@@ -30,7 +28,7 @@ and intuitive way.
   relationships created, photos uploaded)
 - **Weekly newsletter**: automated emails with upcoming milestones and recent
   tree activity via AWS SES
-- **i18n**: English, Spanish, and Catalan
+- **i18n**: English and Urdu, including right-to-left (RTL) layout
 - **Auth**: Google OAuth via Auth.js
 
 ## Getting Started
@@ -50,7 +48,7 @@ and intuitive way.
 1. Clone the repository and install dependencies:
 
    ```bash
-   git clone https://github.com/rguixaro/lararium.git
+   git clone <repository-url>
    cd lararium
    pnpm install
    ```
@@ -78,6 +76,12 @@ and intuitive way.
 
 </details>
 
+## Localization
+
+The app supports English (`en`) and Urdu (`ur`) with Urdu as the default locale.
+Set `NEXT_PUBLIC_DEFAULT_LOCALE` to `en` to change the default. A dedicated Urdu
+host can be configured with `NEXT_PUBLIC_UR_HOST`.
+
 ## Testing
 
 Unit and server tests run automatically on every push and PR to `main`/`stage`
@@ -88,6 +92,12 @@ pnpm test              # unit & server tests (Vitest)
 pnpm test:coverage     # tests + coverage report (HTML in coverage/)
 pnpm test:watch        # watch mode
 ```
+
+## Acknowledgements
+
+Kinship is based on [Lararium](https://github.com/rguixaro/lararium) by
+[Ricard Guixaró](https://rguixaro.dev). The original project and this derivative
+are distributed under the GNU General Public License v3.0.
 
 ## License
 

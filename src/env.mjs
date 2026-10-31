@@ -48,6 +48,9 @@ export const env = createEnv({
     NEXT_PUBLIC_IMAGES_ENABLED: booleanString,
     NEXT_PUBLIC_CLOUDFRONT_ASSETS_DOMAIN: z.string().url().optional(),
     NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
+    NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
+    NEXT_PUBLIC_UR_HOST: z.string().optional(),
+    NEXT_PUBLIC_DEFAULT_LOCALE: z.enum(['en', 'ur']).optional(),
   },
   runtimeEnv: {
     /// Environment
@@ -88,6 +91,10 @@ export const env = createEnv({
     /// Public
     NEXT_PUBLIC_IMAGES_ENABLED: process.env.NEXT_PUBLIC_IMAGES_ENABLED,
     NEXT_PUBLIC_CLOUDFRONT_ASSETS_DOMAIN: process.env.NEXT_PUBLIC_CLOUDFRONT_ASSETS_DOMAIN,
+    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_UR_HOST: process.env.NEXT_PUBLIC_UR_HOST,
+    NEXT_PUBLIC_DEFAULT_LOCALE: process.env.NEXT_PUBLIC_DEFAULT_LOCALE,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

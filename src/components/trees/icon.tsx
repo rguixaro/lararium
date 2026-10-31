@@ -1,8 +1,8 @@
 import { icons, LucideIcon } from 'lucide-react'
 
-import { TreeType, TreeAccessRole } from '@/types'
+import { TreeAccessRole } from '@/types'
 
-type BuiltInType = TreeType | TreeAccessRole | 'Enabled' | 'Disabled' | string
+type BuiltInType = TreeAccessRole | 'Enabled' | 'Disabled' | string
 
 type IconProps = {
   type: BuiltInType
@@ -14,7 +14,6 @@ type IconProps = {
 
 const defaultIconsByTreeType: Record<string, keyof typeof icons> = {
   human: 'UsersRound',
-  animal: 'Cat',
 }
 
 const defaultIconsByUserRole: Record<string, keyof typeof icons> = {

@@ -199,7 +199,6 @@ export default function StyledTree({
           canExportGallery={canExportGallery}
           showModal={treeState.displayInfo}
           treeSlug={tree.slug}
-          treeType={tree.type}
           node={treeState.selectedNode}
           nodes={nodes}
           unions={unions}
@@ -213,7 +212,6 @@ export default function StyledTree({
           }}
         />
         <NodeCreateModal
-          treeType={tree.type}
           showModal={treeState.displayCreate}
           form={nodeCreateForm.form}
           onCreate={nodeCreateForm.onSubmit}

@@ -1,9 +1,6 @@
 import { User } from './user.type'
 import { PictureTag } from './picture.type'
 
-export const TreeType = ['HUMAN', 'ANIMAL'] as const
-export type TreeType = (typeof TreeType)[number]
-
 export const TreeAccessRole = ['VIEWER', 'EDITOR', 'ADMIN'] as const
 export type TreeAccessRole = (typeof TreeAccessRole)[number]
 
@@ -11,7 +8,6 @@ export interface Tree {
   id: string
   slug: string
   name: string
-  type: TreeType
   createdAt: Date
   updatedAt: Date
 

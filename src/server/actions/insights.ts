@@ -833,7 +833,6 @@ export async function getTreeInfo(slug: string): Promise<TreeInfoResult> {
         id: tree.id,
         slug: tree.slug,
         name: tree.name,
-        type: tree.type,
         createdAt: tree.createdAt,
         updatedAt: tree.updatedAt,
         newsletter: tree.newsletter,

@@ -118,7 +118,7 @@ describe('sendWeeklyNewsletters', () => {
       createdAt: new Date(2026, 3, 12),
     }
 
-    mockLanguageToLocale.mockReturnValueOnce('es')
+    mockLanguageToLocale.mockReturnValueOnce('ur')
     mockDb.tree.findMany.mockResolvedValue([
       {
         id: 't1',
@@ -126,7 +126,7 @@ describe('sendWeeklyNewsletters', () => {
         slug: 'family',
         newsletter: true,
         accesses: [
-          { user: { id: 'u1', email: 'alice@example.com', name: 'Alice', language: 'ES' } },
+          { user: { id: 'u1', email: 'alice@example.com', name: 'Alice', language: 'UR' } },
         ],
         nodes: [recentNode],
       },
@@ -136,10 +136,10 @@ describe('sendWeeklyNewsletters', () => {
     const result = await sendWeeklyNewsletters()
 
     expect(result.success).toBe(true)
-    expect(mockLanguageToLocale).toHaveBeenCalledWith('ES')
+    expect(mockLanguageToLocale).toHaveBeenCalledWith('UR')
     expect(mockSendNewsletter).toHaveBeenCalledWith(
       expect.objectContaining({
-        locale: 'es',
+        locale: 'ur',
       })
     )
   })

@@ -11,13 +11,12 @@ import { Button, TypographyH5 } from '@/ui'
 
 import { cn } from '@/utils'
 
-import { Picture, TreeType } from '@/types'
+import { Picture } from '@/types'
 
 import { GalleryImage } from './gallery-image'
 
 interface NodeGalleryContentProps {
   readonly: boolean
-  treeType: TreeType
   pictures: Picture[]
   loadingPictures: boolean
   loading: boolean
@@ -38,7 +37,6 @@ interface NodeGalleryContentProps {
 
 export function NodeGalleryContent({
   readonly,
-  treeType,
   pictures,
   loadingPictures,
   loading,
@@ -175,7 +173,7 @@ export function NodeGalleryContent({
                       {picture.date ? new Date(picture.date).toLocaleDateString(locale) : null}
                     </span>
                     <div className="flex items-center space-x-1">
-                      <Icon size={12} type={treeType} className="stroke-ocean-400" />
+                      <Icon size={12} type="human" className="stroke-ocean-400" />
                       <span>{picture.tags?.length}</span>
                     </div>
                   </div>
@@ -304,7 +302,7 @@ export function NodeGalleryContent({
                   {picture.date ? new Date(picture.date).toLocaleDateString(locale) : null}
                 </span>
                 <div className="flex items-center space-x-1">
-                  <Icon size={12} type={treeType} className="stroke-ocean-400" />
+                  <Icon size={12} type="human" className="stroke-ocean-400" />
                   <span>{picture.tags?.length}</span>
                 </div>
               </div>

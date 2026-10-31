@@ -222,7 +222,6 @@ async function getReadableTree(slug: string, userId: string) {
       id: true,
       slug: true,
       name: true,
-      type: true,
       newsletter: true,
       createdAt: true,
       updatedAt: true,
@@ -263,7 +262,6 @@ export async function collectTreeJsonExport(
       id: ids.tree,
       slug: tree.slug,
       name: tree.name,
-      type: tree.type,
       newsletter: tree.newsletter,
       createdAt: tree.createdAt,
       updatedAt: tree.updatedAt,
@@ -506,7 +504,7 @@ function buildGalleryEntries({
   pictures,
   scope,
 }: {
-  tree: { id: string; slug: string; name: string; type: string }
+  tree: { id: string; slug: string; name: string }
   access: ExportAccess
   node?: { id: string; fullName: string; alias: string | null }
   pictures: GalleryPicture[]
@@ -524,7 +522,6 @@ function buildGalleryEntries({
       id: ids.tree,
       slug: tree.slug,
       name: tree.name,
-      type: tree.type,
     },
     node: node
       ? {

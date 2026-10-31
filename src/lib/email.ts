@@ -261,7 +261,7 @@ ${replacePlaceholders(t.emails.copyright, { year: new Date().getFullYear() })}
 
   return sendEmail(
     {
-      Source: `Roots <${env.AMAZON_SES_FROM_EMAIL}>`,
+      Source: `Kinship <${env.AMAZON_SES_FROM_EMAIL}>`,
       Destination: { ToAddresses: [recipientEmail] },
       Message: {
         Subject: {
@@ -410,7 +410,7 @@ ${replacePlaceholders(t.emails.copyright, { year: new Date().getFullYear() })}
 
   return sendEmail(
     {
-      Source: `Roots <${env.AMAZON_SES_FROM_EMAIL}>`,
+      Source: `Kinship <${env.AMAZON_SES_FROM_EMAIL}>`,
       Destination: { ToAddresses: [recipientEmail] },
       Message: {
         Subject: {
@@ -568,7 +568,7 @@ ${replacePlaceholders(t.emails.copyright, { year: new Date().getFullYear() })}
 
   return sendEmail(
     {
-      Source: `Roots <${env.AMAZON_SES_FROM_EMAIL}>`,
+      Source: `Kinship <${env.AMAZON_SES_FROM_EMAIL}>`,
       Destination: { ToAddresses: [recipientEmail] },
       Message: {
         Subject: {
@@ -665,7 +665,7 @@ ${replacePlaceholders(t.emails.copyright, { year: new Date().getFullYear() })}
 
   return sendEmail(
     {
-      Source: `Roots <${env.AMAZON_SES_FROM_EMAIL}>`,
+      Source: `Kinship <${env.AMAZON_SES_FROM_EMAIL}>`,
       Destination: { ToAddresses: [recipientEmail] },
       Message: {
         Subject: {
@@ -972,7 +972,7 @@ ${replacePlaceholders(t.emails.copyright, { year: new Date().getFullYear() })}
 
   return sendEmail(
     {
-      Source: `Roots <${env.AMAZON_SES_FROM_EMAIL}>`,
+      Source: `Kinship <${env.AMAZON_SES_FROM_EMAIL}>`,
       Destination: { ToAddresses: [recipientEmail] },
       Message: {
         Subject: {

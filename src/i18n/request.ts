@@ -12,11 +12,11 @@ export default getRequestConfig(async () => {
   const defaultHeaders = await headers()
   const headersObj = Object.fromEntries(defaultHeaders.entries())
 
-  const host = headersObj['host'] || 'kinship.vercel.com'
-  const FORCE_UR_DOMAIN = 'kinship.vercel.com'
+  const host = headersObj['host'] || process.env.NEXT_PUBLIC_UR_HOST || 'kinship.vercel.com'
+  const FORCE_UR_DOMAIN = process.env.NEXT_PUBLIC_UR_HOST || 'kinship.vercel.com'
 
   const locales = ['ur', 'en']
-  const defaultLocale = 'ur'
+  const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE === 'en' ? 'en' : 'ur'
 
   let locale: string
 

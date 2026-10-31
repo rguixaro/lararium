@@ -20,11 +20,10 @@ import {
   TypographyH5,
 } from '@/ui'
 
-import { TreeNode, TreeType, Union } from '@/types'
+import { TreeNode, Union } from '@/types'
 
 interface NodeInfoTabGeneralProps {
   readonly: boolean
-  treeType: TreeType
   node: TreeNode | null
   nodes: TreeNode[]
   unions: Union[]

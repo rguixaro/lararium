@@ -1,4 +1,4 @@
-import { TreeNodeGender, TreeType, TreeAccessRole, TreeDeletionRequest } from './tree.type'
+import { TreeNodeGender, TreeAccessRole, TreeDeletionRequest } from './tree.type'
 import { ActivityAction, ActivityLog } from './activity.type'
 
 export interface Milestone {
@@ -94,7 +94,6 @@ export interface TreeInfo {
     id: string
     slug: string
     name: string
-    type: TreeType
     createdAt: Date
     updatedAt: Date
     newsletter: boolean

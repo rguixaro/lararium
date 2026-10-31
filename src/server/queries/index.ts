@@ -150,7 +150,6 @@ export const getTreeNote = cache(async (slug: string) => {
         id: true,
         slug: true,
         name: true,
-        type: true,
         deletionRequest: { select: { id: true } },
         accesses: { where: { userId }, select: { role: true } },
         note: {
@@ -170,7 +169,7 @@ export const getTreeNote = cache(async (slug: string) => {
       error: false as const,
       currentUserId: userId,
       canEdit,
-      tree: { id: tree.id, slug: tree.slug, name: tree.name, type: tree.type },
+      tree: { id: tree.id, slug: tree.slug, name: tree.name },
       note: {
         content: tree.note?.content ?? '',
         updatedAt: tree.note?.updatedAt ?? null,

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-import { CA_SITE_URL, DEFAULT_SITE_URL, getLanguageAlternates } from '@/lib/seo'
+import { DEFAULT_SITE_URL } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
@@ -10,17 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${DEFAULT_SITE_URL}/auth`,
       lastModified,
       changeFrequency: 'monthly',
-      alternates: {
-        languages: getLanguageAlternates('/auth'),
-      },
-    },
-    {
-      url: `${CA_SITE_URL}/auth`,
-      lastModified,
-      changeFrequency: 'monthly',
-      alternates: {
-        languages: getLanguageAlternates('/auth'),
-      },
     },
   ]
 }

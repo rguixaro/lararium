@@ -34,7 +34,7 @@ export async function TreeInfoHeader({ info }: HeaderProps) {
       <div className="mb-4 flex flex-col gap-1">
         <TypographyH4>{info.tree.name}</TypographyH4>
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs opacity-70">
-          <span>{t_enums(info.tree.type.toLowerCase())}</span>
+          <span>{t_enums('human')}</span>
           {info.tree.deletionRequest && (
             <>
               <span>·</span>

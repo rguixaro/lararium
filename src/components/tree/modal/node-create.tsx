@@ -22,10 +22,8 @@ import {
 } from '@/ui'
 
 import { checkKeyDown, cn } from '@/utils'
-import { TreeType } from '@/types'
 
 interface NodeCreateModalProps {
-  treeType: TreeType
   showModal: boolean
   form: UseFormReturn<z.infer<typeof CreateTreeNodeSchema>>
   onCreate: (values: z.infer<typeof CreateTreeNodeSchema>) => Promise<void>
@@ -33,7 +31,6 @@ interface NodeCreateModalProps {
 }
 
 export function NodeCreateModal({
-  treeType,
   showModal,
   form,
   onCreate,

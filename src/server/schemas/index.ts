@@ -1,8 +1,5 @@
 import z from 'zod'
 
-export const TreeType = ['HUMAN'] as const
-export type TreeType = (typeof TreeType)[number]
-
 export const TreeAccessRole = ['VIEWER', 'EDITOR', 'ADMIN'] as const
 export type TreeAccessRole = (typeof TreeAccessRole)[number]
 
@@ -58,7 +55,6 @@ export const CreateTreeSchema = z.object({
     .string()
     .min(3, { message: 'tree-name-too-short' })
     .max(24, { message: 'tree-name-too-long' }),
-  type: z.enum(TreeType, { required_error: 'tree-type-required' }).default('HUMAN'),
   newsletter: z.boolean().optional(),
   members: z
     .array(
@@ -78,7 +74,6 @@ export const TreeSchema = z.object({
   id: z.string(),
   slug: z.string(),
   name: z.string(),
-  type: z.enum(TreeType),
   createdAt: z.date(),
   updatedAt: z.date(),
 })
@@ -137,6 +132,7 @@ export const CreateTreeNodeSchema = z
     birthDate: z.coerce.date().optional().nullable(),
     deathPlace: z.string().nullable().optional(),
     deathDate: z.coerce.date().optional().nullable(),
+    gender: z.enum(TreeNodeGender).optional(),
     createdAt: z.coerce.date().optional(),
     updatedAt: z.coerce.date().optional(),
     edgesFrom: z
@@ -166,12 +162,21 @@ export const CreateTreeNodeSchema = z
 
 export type CreateTreeMemberInput = z.TypeOf<typeof CreateTreeNodeSchema>
 
-export const UpdateTreeNodeSchema = z.object({
-  id: z.string().min(1),
-  treeId: z.string().min(1),
-  fullName: z.string().min(1, { message: 'full-name-required' }),
-  servingAs: z.string().optional().nullable(),
-})
+export const UpdateTreeNodeSchema = z
+  .object({
+    id: z.string().min(1),
+    treeId: z.string().min(1),
+    fullName: z.string().min(1, { message: 'full-name-required' }),
+    servingAs: z.string().optional().nullable(),
+    alias: z.string().max(16, { message: 'alias-too-long' }).optional().nullable(),
+    birthPlace: z.string().nullable().optional(),
+    birthDate: z.coerce.date().optional().nullable(),
+    deathPlace: z.string().nullable().optional(),
+    deathDate: z.coerce.date().optional().nullable(),
+    gender: z.enum(TreeNodeGender).optional(),
+    biography: z.string().nullable().optional(),
+  })
+  .superRefine(deathAfterBirth)
 
 export type UpdateTreeNodeInput = z.TypeOf<typeof UpdateTreeNodeSchema>
 

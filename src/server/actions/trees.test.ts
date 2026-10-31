@@ -128,7 +128,7 @@ beforeEach(() => {
 })
 
 describe('createTree', () => {
-  const values = { name: 'My Tree', type: 'HUMAN' as const }
+  const values = { name: 'My Tree' }
 
   it('returns error when not authenticated', async () => {
     mockAssertAuth.mockRejectedValue(new Error('unauthenticated'))

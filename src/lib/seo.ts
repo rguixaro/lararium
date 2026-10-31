@@ -1,10 +1,8 @@
 import { headers } from 'next/headers'
 
-export const DEFAULT_SITE_URL = 'https://roots.rguixaro.dev'
-export const CA_SITE_URL = 'https://arrels.rguixaro.dev'
+export const DEFAULT_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kinship.vercel.com'
 
 const DEFAULT_SITE_HOST = new URL(DEFAULT_SITE_URL).host
-const CA_SITE_HOST = new URL(CA_SITE_URL).host
 
 export async function getRequestSiteUrl(): Promise<string> {
   const requestHeaders = await headers()
@@ -13,7 +11,6 @@ export async function getRequestSiteUrl(): Promise<string> {
   const forwardedProto = requestHeaders.get('x-forwarded-proto')?.split(',')[0]?.trim()
   const protocol = forwardedProto ?? (host.includes('localhost') ? 'http' : 'https')
 
-  if (host === CA_SITE_HOST) return CA_SITE_URL
   if (host === DEFAULT_SITE_HOST) return DEFAULT_SITE_URL
 
   return `${protocol}://${host}`
@@ -21,7 +18,6 @@ export async function getRequestSiteUrl(): Promise<string> {
 
 export function getLanguageAlternates(pathname = ''): Record<string, string> {
   return {
-    ca: `${CA_SITE_URL}${pathname}`,
     'x-default': `${DEFAULT_SITE_URL}${pathname}`,
   }
 }

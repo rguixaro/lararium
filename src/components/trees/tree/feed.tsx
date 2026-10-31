@@ -20,7 +20,6 @@ export const TreesFeed = async () => {
     id: t.id,
     slug: t.slug,
     name: t.name,
-    type: t.type,
     createdAt: t.createdAt,
     updatedAt: t.updatedAt,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

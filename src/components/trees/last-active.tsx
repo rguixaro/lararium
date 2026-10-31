@@ -18,7 +18,7 @@ export async function LastActive() {
     <Link href={`/trees/${tree.slug}`} className="group block">
       <div className="text-pale-ocean bg-ocean-200 hover:bg-ocean-300 flex items-center gap-4 rounded-xl p-4 transition-colors duration-200">
         <div className="bg-pale-ocean flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
-          <Icon type={tree.type} size={22} className="stroke-ocean-300" />
+          <Icon type="human" size={22} className="stroke-ocean-300" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="text-pale-ocean text-xs font-semibold tracking-wide uppercase">

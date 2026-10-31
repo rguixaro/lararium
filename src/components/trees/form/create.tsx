@@ -10,7 +10,7 @@ import { toast } from 'sonner'
 import Link from 'next/link'
 import { type z } from 'zod'
 
-import { CreateTreeSchema, TreeType } from '@/server/schemas'
+import { CreateTreeSchema } from '@/server/schemas'
 import { createTree, inviteMember, removeMember } from '@/server/actions'
 
 import { GoBack } from '@/components/layout'
@@ -270,7 +270,6 @@ export const CreateTree = ({ userId: currentUserId }: CreateTreeProps) => {
     setCurrentTree(tree)
     form.reset({
       name: tree.name,
-      type: tree.type,
       members: tree.accesses?.map((a) => ({
         userId: a.userId,
         name: a.user.name,
@@ -337,29 +336,6 @@ export const CreateTree = ({ userId: currentUserId }: CreateTreeProps) => {
                   )}
                 />
                 <div className="bg-ocean-200/15 mx-auto my-3 h-1 w-full rounded" />
-                <FormField
-                  control={form.control}
-                  name="type"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>{t_trees('tree-types')}</FormLabel>
-                      <FormDescription className="mb-2 text-sm opacity-70">
-                        {t_trees('tree-types-info')}
-                      </FormDescription>
-                      <FormControl>
-                        <StyledSelector
-                          types={TreeType}
-                          value={form.getValues('type')}
-                          setValue={(value) => form.setValue('type', value as TreeType)}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                      <FormDescription className="opacity-70">
-                        {t_trees('tree-types-alert')}
-                      </FormDescription>
-                    </FormItem>
-                  )}
-                />
               </div>
               <TypographyH5 className="mt-5">{t_trees('settings-tab')}</TypographyH5>
               <div className="border-ocean-200/50 shadow-center bg-pale-ocean flex-col items-start rounded-xl border-2 px-3 py-2">
