@@ -1,6 +1,6 @@
 import z from 'zod'
 
-export const TreeType = ['HUMAN', 'ANIMAL'] as const
+export const TreeType = ['HUMAN'] as const
 export type TreeType = (typeof TreeType)[number]
 
 export const TreeAccessRole = ['VIEWER', 'EDITOR', 'ADMIN'] as const
@@ -58,7 +58,7 @@ export const CreateTreeSchema = z.object({
     .string()
     .min(3, { message: 'tree-name-too-short' })
     .max(24, { message: 'tree-name-too-long' }),
-  type: z.enum(TreeType, { required_error: 'tree-type-required' }),
+  type: z.enum(TreeType, { required_error: 'tree-type-required' }).default('HUMAN'),
   newsletter: z.boolean().optional(),
   members: z
     .array(
@@ -107,7 +107,7 @@ export const UpdateProfileSchema = z.object({
     .max(40, { message: 'username-too-long' }),
   email: z.string().email({ message: 'email-invalid' }),
   newsletter: z.boolean().optional(),
-  language: z.enum(['CA', 'ES', 'EN']),
+  language: z.enum(['UR', 'EN']),
 })
 
 export type UpdateProfileInput = z.TypeOf<typeof UpdateProfileSchema>
@@ -116,11 +116,7 @@ const deathAfterBirth = (
   data: { birthDate?: Date | null; deathDate?: Date | null },
   ctx: z.RefinementCtx
 ) => {
-  if (
-    data.birthDate &&
-    data.deathDate &&
-    data.deathDate.getTime() <= data.birthDate.getTime()
-  ) {
+  if (data.birthDate && data.deathDate && data.deathDate.getTime() <= data.birthDate.getTime()) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'error-death-before-birth',
@@ -133,12 +129,14 @@ export const CreateTreeNodeSchema = z
   .object({
     treeId: z.string().min(1),
     fullName: z.string().min(1, { message: 'full-name-required' }),
+    married: z.boolean().optional(),
+    spouseName: z.string().trim().max(100).optional(),
+    servingAs: z.string().optional().nullable(),
     alias: z.string().max(16, { message: 'alias-too-long' }).optional().nullable(),
     birthPlace: z.string().nullable().optional(),
     birthDate: z.coerce.date().optional().nullable(),
     deathPlace: z.string().nullable().optional(),
     deathDate: z.coerce.date().optional().nullable(),
-    gender: z.enum(TreeNodeGender, { required_error: 'gender-required' }),
     createdAt: z.coerce.date().optional(),
     updatedAt: z.coerce.date().optional(),
     edgesFrom: z
@@ -168,20 +166,12 @@ export const CreateTreeNodeSchema = z
 
 export type CreateTreeMemberInput = z.TypeOf<typeof CreateTreeNodeSchema>
 
-export const UpdateTreeNodeSchema = z
-  .object({
-    id: z.string(),
-    treeId: z.string().min(1),
-    fullName: z.string().min(1, { message: 'full-name-required' }),
-    alias: z.string().max(16, { message: 'alias-too-long' }).optional().nullable(),
-    birthPlace: z.string().nullable().optional(),
-    birthDate: z.coerce.date().optional().nullable(),
-    deathPlace: z.string().nullable().optional(),
-    deathDate: z.coerce.date().optional().nullable(),
-    gender: z.enum(TreeNodeGender, { required_error: 'gender-required' }),
-    biography: z.string().nullable().optional(),
-  })
-  .superRefine(deathAfterBirth)
+export const UpdateTreeNodeSchema = z.object({
+  id: z.string().min(1),
+  treeId: z.string().min(1),
+  fullName: z.string().min(1, { message: 'full-name-required' }),
+  servingAs: z.string().optional().nullable(),
+})
 
 export type UpdateTreeNodeInput = z.TypeOf<typeof UpdateTreeNodeSchema>
 
@@ -198,11 +188,7 @@ const divorceAfterMarriage = (
   data: { marriedAt?: Date | null; divorcedAt?: Date | null },
   ctx: z.RefinementCtx
 ) => {
-  if (
-    data.marriedAt &&
-    data.divorcedAt &&
-    data.divorcedAt.getTime() < data.marriedAt.getTime()
-  ) {
+  if (data.marriedAt && data.divorcedAt && data.divorcedAt.getTime() < data.marriedAt.getTime()) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'error-divorced-before-married',

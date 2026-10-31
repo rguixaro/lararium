@@ -48,12 +48,16 @@ export const UpdateAccount = (props: UpdateAccountProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [currentTab, setCurrentTab] = useState<'profile' | 'account'>('profile')
 
+  const initialLanguage = (
+    ['UR', 'EN'].includes(props.language) ? props.language : 'UR'
+  ) as Language
+
   const hookForm = useForm<z.infer<typeof UpdateProfileSchema>>({
     resolver: zodResolver(UpdateProfileSchema),
     defaultValues: {
       name: props.name,
       newsletter: props.newsletter,
-      language: props.language,
+      language: initialLanguage,
       email: props.email,
     },
   })
@@ -164,7 +168,7 @@ export const UpdateAccount = (props: UpdateAccountProps) => {
                       </FormDescription>
                       <FormControl className="mb-5 flex w-max">
                         <StyledSelector
-                          types={['CA', 'ES', 'EN'] as const}
+                          types={['UR', 'EN'] as const}
                           value={hookForm.getValues('language')}
                           setValue={(value) => hookForm.setValue('language', value as Language)}
                         />
@@ -181,7 +185,7 @@ export const UpdateAccount = (props: UpdateAccountProps) => {
                     loading ||
                     (name === props.name &&
                       newsletter === props.newsletter &&
-                      language === props.language)
+                      language === initialLanguage)
                   }
                 >
                   {loading ? (

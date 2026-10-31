@@ -699,6 +699,7 @@ export const createTreeNode = async (
       data: {
         treeId: values.treeId,
         fullName: values.fullName,
+        servingAs: values.servingAs,
         alias: values.alias,
         birthPlace: values.birthPlace,
         birthDate: values.birthDate,
@@ -776,6 +777,7 @@ export const updateTreeNode = async (
       where: { id: prevNode.id },
       data: {
         fullName: values.fullName,
+        servingAs: values.servingAs,
         alias: values.alias,
         birthPlace: values.birthPlace,
         birthDate: values.birthDate,
@@ -830,10 +832,7 @@ async function hasReachedMarriageLimit(
   const existingUnions = await db.union.findMany({
     where: {
       treeId,
-      OR: [
-        { spouseAId: { in: uniqueNodeIds } },
-        { spouseBId: { in: uniqueNodeIds } },
-      ],
+      OR: [{ spouseAId: { in: uniqueNodeIds } }, { spouseBId: { in: uniqueNodeIds } }],
     },
     select: { id: true, spouseAId: true, spouseBId: true },
   })

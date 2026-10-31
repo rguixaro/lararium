@@ -9,8 +9,8 @@ export function SpouseEdge(props: EdgeProps) {
   const openEdgeMenu = useEdgeMenu()
 
   const path = `M ${sourceX} ${sourceY} L ${targetX} ${targetY}`
-  const buttonX = typeof data?.buttonX === 'number' ? data.buttonX : (sourceX + targetX) / 2
-  const buttonY = typeof data?.buttonY === 'number' ? data.buttonY : (sourceY + targetY) / 2
+  const buttonX = (sourceX + targetX) / 2
+  const buttonY = (sourceY + targetY) / 2
   const showButton =
     typeof data?.showButton === 'boolean' ? data.showButton : Math.abs(targetX - sourceX) >= 56
 

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import localFont from 'next/font/local'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { SessionProvider } from 'next-auth/react'
@@ -17,12 +16,6 @@ import { DEFAULT_SITE_URL } from '@/lib/seo'
 
 import { cn } from '@/utils'
 
-const outfit = localFont({
-  src: '../fonts/outfit-variable.ttf',
-  variable: '--font-outfit',
-  weight: '100 900',
-})
-
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -38,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const name = t_common('app-name')
   const description = t_common('app-description')
 
-  const ogLocaleMap: Record<string, string> = { ca: 'ca_ES', en: 'en_US', es: 'es_ES' }
+  const ogLocaleMap: Record<string, string> = { ur: 'ur_PK', en: 'en_US' }
 
   return {
     metadataBase: new URL(DEFAULT_SITE_URL),
@@ -62,7 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: name,
       title: name,
       description,
-      locale: ogLocaleMap[locale] ?? 'en_US',
+      locale: ogLocaleMap[locale] ?? 'ur_PK',
       alternateLocale: Object.values(ogLocaleMap).filter((l) => l !== ogLocaleMap[locale]),
       images: [
         {
@@ -96,16 +89,17 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale()
   const messages = await getMessages()
+  const dir = locale === 'ur' ? 'rtl' : 'ltr'
 
   const session = await auth()
   const userName = session?.user.name
   const userImage = session?.user.image ?? null
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} dir={dir} suppressHydrationWarning>
       <body
         className={cn(
-          `font-sans ${outfit.variable} antialiased`,
+          'font-sans antialiased',
           'bg-ocean-50 selection:bg-ocean-200/15 flex justify-center overflow-x-hidden'
         )}
       >

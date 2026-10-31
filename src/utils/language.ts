@@ -3,14 +3,13 @@ import { Language } from '@prisma/client'
 /**
  * Supported locale codes
  */
-export type Locale = 'ca' | 'es' | 'en'
+export type Locale = 'ur' | 'en'
 
 /**
  * Map Language enum to locale codes
  */
 export const LANGUAGE_TO_LOCALE: Record<Language, Locale> = {
-  CA: 'ca',
-  ES: 'es',
+  UR: 'ur',
   EN: 'en',
 } as const
 
@@ -18,8 +17,7 @@ export const LANGUAGE_TO_LOCALE: Record<Language, Locale> = {
  * Map locale codes to Language enum
  */
 export const LOCALE_TO_LANGUAGE: Record<Locale, Language> = {
-  ca: 'CA',
-  es: 'ES',
+  ur: 'UR',
   en: 'EN',
 } as const
 

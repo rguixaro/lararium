@@ -26,12 +26,12 @@ const MAX_EXPORT_PIXELS = 28_000_000
 const FONT_FAMILY = 'Outfit, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
 
 const EXPORT_COLORS = {
-  paper: '#f7fdfe',
-  tree: '#e1ecee',
-  border: '#a8c7cb',
-  text: '#2e6b74',
-  muted: '#4c8690',
-  rule: '#a8c7cb',
+  paper: '#ffffff',
+  tree: '#ffffff',
+  border: '#000000',
+  text: '#000000',
+  muted: '#000000',
+  rule: '#000000',
 }
 
 function downloadBlob(blob: Blob, filename: string) {
@@ -128,7 +128,8 @@ async function addExportFrame(
   )
   const sideBorder = framePadding
   const headerHeight = framePadding
-  const footerHeight = framePadding
+  const hasFooter = !!(metadata.footerLabel || metadata.footerDomain)
+  const footerHeight = hasFooter ? framePadding : Math.round(framePadding * 0.4)
   const canvas = document.createElement('canvas')
 
   canvas.width = treeImage.width + sideBorder * 2
@@ -209,21 +210,24 @@ async function addExportFrame(
   setCanvasFont(context, 600, 16 * scale)
   drawTruncatedText(context, metadata.generatedLabel, contentRight, titleY, generatedWidth)
 
-  context.textAlign = 'center'
-  const footerStartY = treeY + treeImage.height + Math.round(footerHeight * 0.42)
-  context.fillStyle = EXPORT_COLORS.muted
-  setCanvasFont(context, 600, 16 * scale)
-  drawTruncatedText(context, metadata.footerLabel, contentCenter, footerStartY, contentWidth)
+  if (hasFooter) {
+    context.textAlign = 'center'
+    const footerStartY = treeY + treeImage.height + Math.round(footerHeight * 0.42)
+    context.fillStyle = EXPORT_COLORS.muted
+    setCanvasFont(context, 600, 16 * scale)
+    drawTruncatedText(context, metadata.footerLabel, contentCenter, footerStartY, contentWidth)
 
-  context.fillStyle = EXPORT_COLORS.text
-  setCanvasFont(context, 800, 24 * scale, 1.1)
-  drawTruncatedText(
-    context,
-    metadata.footerDomain,
-    contentCenter,
-    footerStartY + Math.round(34 * scale),
-    contentWidth
-  )
+    context.fillStyle = EXPORT_COLORS.text
+    setCanvasFont(context, 800, 24 * scale, 1.1)
+    drawTruncatedText(
+      context,
+      metadata.footerDomain,
+      contentCenter,
+      footerStartY + Math.round(34 * scale),
+      contentWidth
+    )
+
+  }
 
   context.restore()
 
@@ -313,7 +317,7 @@ export function useTreeImageExport(
       const blob = await toBlob(element, {
         cacheBust: true,
         pixelRatio,
-        backgroundColor: '#e1ecee',
+        backgroundColor: '#ffffff',
       })
 
       if (!blob) return { error: true as const, message: 'error' }

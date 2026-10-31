@@ -29,14 +29,14 @@
     "settings": "Settings",
     "home": "Home",
     "about": "About",
-    "app-name": "Roots",
-    "app-description": "Explore your family connections and strengthen your roots",
-    "app-beta": "beta version",
-    "app-status": "is currently in its",
-    "app-issues": "If you detect any problem or bug, feel free to",
-    "app-ticket": "create an issue",
-    "app-source": "on GitHub",
-    "unavailable-feature": "This feature is not available in this beta version",
+    "app-name": "Kinship",
+    "app-description": "Explore your family connections and preserve your heritage",
+    "app-beta": "v1.0",
+    "app-status": "is running",
+    "app-issues": "If you detect any problem or bug, please contact",
+    "app-ticket": "support",
+    "app-source": "via email",
+    "unavailable-feature": "This feature is currently unavailable",
     "error-title": "Something went wrong",
     "error-description": "An unexpected error occurred. Please try again",
     "try-again": "Try again"
@@ -150,13 +150,12 @@
     "admin": "Admin",
     "editor": "Editor",
     "viewer": "Viewer",
-    "ca": "Català",
-    "en": "English",
-    "es": "Español"
+    "ur": "Urdu",
+    "en": "English"
   },
   "login": {
     "login-to": "Sign in to ",
-    "login-text": "Explore your family connections and strengthen your roots",
+    "login-text": "Explore your family connections and preserve your roots",
     "login-error": "An error occurred while signing in",
     "login-with": "Continue with ",
     "build-your-tree-title": "Build Your Tree",
@@ -172,14 +171,14 @@
     "good-evening": "Good evening, {name}",
     "continue": "Continue where you left off",
     "empty-title": "Start your family tree",
-    "empty-description": "Create your first family to explore, preserve, and share your roots"
+    "empty-description": "Create your first family tree to explore, preserve, and share your roots"
   },
   "about": {
     "title": "About <app>{appName}</app>",
     "features-title": "What you can do",
-    "feedback-title": "Feedback welcome",
-    "feedback-description": "<app>{appName}</app> is a small personal project built in the open. If you run into a bug or have an idea, GitHub is the best place to reach me",
-    "github-cta": "View on GitHub"
+    "feedback-title": "Feedback & Support",
+    "feedback-description": "<app>{appName}</app> is built for secure family collaboration. Reach out to system administrators for features or support requests.",
+    "github-cta": "Contact Support"
   },
   "notes": {
     "title": "Notes",
@@ -241,7 +240,7 @@
     "tree-types": "Family type",
     "tree-types-info": "The styling and features may vary based on the selected type",
     "tree-types-alert": "Bear in mind that this choice is permanent and cannot be changed later",
-    "settings-tab": "Newsletter",
+    "settings-tab": "Updates",
     "settings-tab-label": "Settings",
     "tree-newsletter-weekly": "Weekly updates",
     "tree-newsletter-weekly-info": "If enabled, all family members will receive weekly email updates with recent changes and highlights from the family tree",
@@ -282,6 +281,8 @@
     "node-general-info": "General information",
     "node-fullname": "Full name",
     "node-fullname-description": "Enter the full name of the new member",
+    "node-serving-as": "Serving as",
+    "node-serving-as-description": "Enter the role or responsibility of the new member (optional)",
     "node-alias": "Also known as",
     "node-alias-description": "Enter any nicknames for the new member (optional)",
     "node-birth-place": "Birth place",
@@ -294,6 +295,9 @@
     "node-death-date-description": "Enter the death date of the new member (optional)",
     "node-gender": "Gender",
     "node-gender-description": "Select the gender of the new member",
+    "node-married": "Married",
+    "node-spouse-name": "Spouse's name",
+    "node-married-to": "{name} married to {spouse}",
     "node-gender-male": "Male",
     "node-gender-female": "Female",
     "node-gender-other": "Other",
@@ -356,9 +360,9 @@
     "email-description": "This email address is associated with your profile and cannot be changed",
     "email-hint": "Email address is managed by your OAuth provider",
     "email-unmatched": "The email address does not match",
-    "newsletter": "Newsletter",
+    "newsletter": "Email Digest",
     "newsletter-description": "If enabled, you will receive weekly emails with updates and highlights from your families",
-    "newsletter-description-alert": "Make sure the newsletter is enabled for each of your families",
+    "newsletter-description-alert": "Make sure email notifications are enabled for each of your families",
     "language": "Language",
     "language-description": "Select the preferred language for both application and communications",
     "account-delete": "Delete account",
@@ -401,8 +405,9 @@
     "deleted-user": "Deleted user",
     "name": "Name",
     "type": "Type",
-    "newsletter": "Newsletter",
+    "newsletter": "Email Updates",
     "fullName": "Full name",
+    "servingAs": "Serving as",
     "birthDate": "Birth date",
     "deathDate": "Death date",
     "marriedAt": "Marriage date",
@@ -425,19 +430,19 @@
   },
   "emails": {
     "welcome": {
-      "subject": "Welcome to Roots, {name}!",
-      "title": "Welcome to Roots!",
+      "subject": "Welcome to {appName}, {name}!",
+      "title": "Welcome to {appName}!",
       "subtitle": "Start preserving your family's story",
       "greeting": "Hi {name},",
-      "intro": "Thank you for joining Roots! We're thrilled to help you preserve and share your family's story.",
+      "intro": "Thank you for joining {appName}! We're thrilled to help you preserve and share your family's story.",
       "getting-started-title": "Getting started",
       "step-1": "Create your first family tree",
       "step-2": "Add family members and their stories",
       "step-3": "Upload and organize photos",
       "step-4": "Invite relatives to collaborate",
       "cta": "Start building your tree",
-      "help": "If you have any questions or need assistance, feel free to reach out. We're here to help you every step of the way.",
-      "footer": "You're receiving this email because you created an account on Roots."
+      "help": "If you have any questions or need assistance, feel free to reach out to system administrators.",
+      "footer": "You're receiving this email because you created an account."
     },
     "invitation": {
       "subject": "{inviter} invited you to {tree}",
@@ -456,7 +461,7 @@
       "permission-base-2": "this family tree. Click the button below to get started.",
       "cta": "View family tree",
       "link": "Or copy and paste this URL into your browser:",
-      "help": "If you have any questions about how to use Roots, we're here to help.",
+      "help": "If you have any questions, we're here to help.",
       "footer": "This invitation was sent by {inviter}. If you weren't expecting this email, you can safely ignore it."
     },
     "tree-deletion-requested": {
@@ -501,7 +506,7 @@
       "footer": "You're receiving this email because you're subscribed to weekly updates for this family tree.",
       "link": "Manage your preferences"
     },
-    "copyright": "© {year} Roots. All rights reserved."
+    "copyright": "© {year} YourClientCompanyName. All rights reserved."
   },
   "share": {
     "title": "Share family tree",
@@ -548,7 +553,7 @@
     "export-image-success": "Tree image generated",
     "export-image-stat-members": "{count, plural, one {# member} other {# members}}",
     "export-image-generated": "Generated {date}",
-    "export-image-footer": "More family trees on",
+    "export-image-footer": "Family trees powered by",
     "share-download-title": "Share & export",
     "share-download-description": "Invite collaborators with a link or save a snapshot of your family tree",
     "empty-no-members": "This family has no members yet",

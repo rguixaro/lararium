@@ -9,7 +9,6 @@ datasource db {
 
 enum TreeType {
   HUMAN
-  ANIMAL
 }
 
 enum TreeAccessRole {
@@ -33,8 +32,7 @@ enum TreeNodeGender {
 }
 
 enum Language {
-  CA
-  ES
+  UR
   EN
 }
 
@@ -101,6 +99,7 @@ model TreeNode {
   treeId String @db.ObjectId
 
   fullName  String
+  servingAs String?
   birthDate DateTime?
   deathDate DateTime?
   gender    TreeNodeGender @default(UNSPECIFIED)
@@ -131,9 +130,6 @@ model Union {
   tree   Tree   @relation(fields: [treeId], references: [id], onDelete: Cascade)
   treeId String @db.ObjectId
 
-  // onDelete must be NoAction here to avoid a referential-integrity cycle
-  // with TreeNode.childOfUnion. Spouse-delete cascade is handled in the
-  // deleteTreeNode action.
   spouseA   TreeNode @relation("UnionSpouseA", fields: [spouseAId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   spouseAId String   @db.ObjectId
 

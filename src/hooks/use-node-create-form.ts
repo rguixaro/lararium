@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 import { type z } from 'zod'
 
 import { CreateTreeNodeSchema } from '@/server/schemas'
-import { createTreeNode } from '@/server/actions'
+import { createTreeNode, createUnion } from '@/server/actions'
 
 import { Tree } from '@/types'
 
@@ -23,17 +23,27 @@ export function useNodeCreateForm(
     defaultValues: {
       treeId: tree.id,
       fullName: '',
-      alias: '',
+      married: false,
+      spouseName: '',
+      servingAs: '',
       birthPlace: '',
       deathPlace: '',
     },
   })
 
   const onSubmit = async (values: z.infer<typeof CreateTreeNodeSchema>): Promise<void> => {
-    const { error, message, nodeId } = await createTreeNode(values)
-    if (error) {
+    const { married, spouseName, ...personValues } = values
+    const { error, message, nodeId } = await createTreeNode(personValues)
+    if (error || !nodeId) {
       toast.error(t_errors(message || 'error'))
       return
+    }
+
+    if (married && spouseName) {
+      const spouse = await createTreeNode({ treeId: tree.id, fullName: spouseName })
+      if (!spouse.error && spouse.nodeId) {
+        await createUnion({ treeId: tree.id, spouseAId: nodeId, spouseBId: spouse.nodeId })
+      }
     }
 
     toast.success(t_toasts('node-created'))

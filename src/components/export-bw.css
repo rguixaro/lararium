@@ -1,0 +1,12 @@
+/* Black & white export: applied only while the image is being captured */
+.react-flow.tree-exporting { background: #ffffff !important; box-shadow: none !important; }
+.react-flow.tree-exporting .react-flow__background,
+.react-flow.tree-exporting .react-flow__handle,
+.react-flow.tree-exporting .react-flow__edgelabel-renderer,
+.react-flow.tree-exporting [data-edge-menu-trigger] { display: none !important; }
+.react-flow.tree-exporting .react-flow__node > div {
+  background: #ffffff !important; color: #000000 !important;
+  border: 2px solid #000000 !important; box-shadow: none !important; border-radius: 6px !important;
+}
+.react-flow.tree-exporting .react-flow__node * { color: #000000 !important; opacity: 1 !important; }
+.react-flow.tree-exporting .react-flow__edge-path { stroke: #000000 !important; }

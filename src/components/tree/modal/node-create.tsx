@@ -12,18 +12,11 @@ import {
   Button,
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
   Input,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Textarea,
   TypographyH4,
   TypographyH5,
 } from '@/ui'
@@ -81,7 +74,6 @@ export function NodeCreateModal({
 
   /**
    * Handle drag start for mobile modal resizing
-   * @param e React.MouseEvent | React.TouchEvent
    */
   const handleDragStart = useCallback(
     (e: React.MouseEvent | React.TouchEvent) => {
@@ -99,7 +91,6 @@ export function NodeCreateModal({
 
   /**
    * Handle drag move for mobile modal resizing
-   * @param e MouseEvent | TouchEvent
    */
   const handleDragMove = useCallback(
     (e: MouseEvent | TouchEvent) => {
@@ -234,32 +225,31 @@ export function NodeCreateModal({
                 <div className="mb-6 flex items-start justify-between">
                   <div className="flex flex-col">
                     <TypographyH4 className="mt-4">{t_trees('node-new')}</TypographyH4>
-                    <p>{t_trees('node-new-description')} </p>
+                    <p>{t_trees('node-new-description')}</p>
                   </div>
                   <button
+                    type="button"
                     onClick={onClose}
                     className="hover:bg-ocean-200/15 rounded p-1 transition-colors duration-300"
                   >
                     <X size={24} className="text-ocean-200" />
                   </button>
                 </div>
+
                 <TypographyH5 className="mt-5">{t_trees('node-general-info')}</TypographyH5>
                 <div className="border-ocean-200/50 shadow-center bg-pale-ocean mb-2 flex-col items-start rounded-xl border-2 px-3 py-2 text-left">
+                  {/* Full Name */}
                   <FormField
                     control={form.control}
                     name="fullName"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="w-fit">
                         <FormLabel>{`${t_trees('node-fullname')}*`}</FormLabel>
-                        <FormDescription className="mb-2 text-sm opacity-70">
-                          {t_trees('node-fullname-description')}
-                        </FormDescription>
                         <FormControl>
                           <div className="py-2">
                             <Input
                               {...field}
                               autoComplete="off"
-                              className="min-w-[16ch]"
                               placeholder={t_trees('node-fullname')}
                               disabled={loading}
                             />
@@ -269,24 +259,39 @@ export function NodeCreateModal({
                       </FormItem>
                     )}
                   />
-                  {
+
+                  <FormField
+                    control={form.control}
+                    name="married"
+                    render={({ field }) => (
+                      <FormItem className="mt-3 flex flex-row items-center gap-2">
+                        <FormControl>
+                          <input
+                            type="checkbox"
+                            checked={field.value ?? false}
+                            onChange={(e) => field.onChange(e.target.checked)}
+                            disabled={loading}
+                          />
+                        </FormControl>
+                        <FormLabel className="mb-0">{t_trees('node-married')}</FormLabel>
+                      </FormItem>
+                    )}
+                  />
+
+                  {form.watch('married') && (
                     <FormField
                       control={form.control}
-                      name="alias"
+                      name="spouseName"
                       render={({ field }) => (
-                        <FormItem className="mt-3">
-                          <FormLabel>{t_trees('node-alias')}</FormLabel>
-                          <FormDescription className="mb-2 text-sm opacity-70">
-                            {t_trees('node-alias-description')}
-                          </FormDescription>
+                        <FormItem className="mt-3 w-fit">
+                          <FormLabel>{t_trees('node-spouse-name')}</FormLabel>
                           <FormControl>
                             <div className="py-2">
                               <Input
                                 {...field}
                                 value={field.value ?? ''}
                                 autoComplete="off"
-                                className="min-w-[16ch]"
-                                placeholder={t_trees('node-alias')}
+                                placeholder={t_trees('node-spouse-name')}
                                 disabled={loading}
                               />
                             </div>
@@ -295,159 +300,26 @@ export function NodeCreateModal({
                         </FormItem>
                       )}
                     />
-                  }
+                  )}
+
                   <div className="bg-ocean-200/15 mx-auto my-3 h-1 w-full rounded" />
+
+                  {/* Serving As */}
                   <FormField
                     control={form.control}
-                    name="birthPlace"
+                    name="servingAs"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t_trees('node-birth-place')}</FormLabel>
-                        <FormDescription className="mb-2 text-sm opacity-70">
-                          {t_trees('node-birth-place-description')}
-                        </FormDescription>
+                      <FormItem className="w-fit">
+                        <FormLabel>{t_trees('node-serving-as')}</FormLabel>
                         <FormControl>
                           <div className="py-2">
                             <Input
                               {...field}
                               value={field.value ?? ''}
                               autoComplete="off"
-                              className="min-w-[16ch]"
-                              placeholder={t_trees('node-birth-place')}
+                              placeholder={t_trees('node-serving-as')}
                               disabled={loading}
                             />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="birthDate"
-                    render={({ field }) => (
-                      <FormItem className="mt-3">
-                        <FormLabel>{t_trees('node-birth-date')}</FormLabel>
-                        <FormDescription className="mb-2 text-sm opacity-70">
-                          {t_trees('node-birth-date-description')}
-                        </FormDescription>
-                        <FormControl>
-                          <div className="py-2">
-                            <Input
-                              {...field}
-                              className="w-fit"
-                              value={
-                                field.value ? new Date(field.value).toISOString().split('T')[0] : ''
-                              }
-                              onChange={(e) =>
-                                field.onChange(e.target.value ? new Date(e.target.value) : null)
-                              }
-                              type="date"
-                              autoComplete="off"
-                              placeholder={t_trees('node-birth-date')}
-                              disabled={loading}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="deathPlace"
-                    render={({ field }) => (
-                      <FormItem className="mt-3">
-                        <FormLabel>{t_trees('node-death-place')}</FormLabel>
-                        <FormDescription className="mb-2 text-sm opacity-70">
-                          {t_trees('node-death-place-description')}
-                        </FormDescription>
-                        <FormControl>
-                          <div className="py-2">
-                            <Input
-                              {...field}
-                              value={field.value ?? ''}
-                              autoComplete="off"
-                              className="min-w-[16ch]"
-                              placeholder={t_trees('node-death-place')}
-                              disabled={loading}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="deathDate"
-                    render={({ field }) => (
-                      <FormItem className="mt-3">
-                        <FormLabel>{t_trees('node-death-date')}</FormLabel>
-                        <FormDescription className="mb-2 text-sm opacity-70">
-                          {t_trees('node-death-date-description')}
-                        </FormDescription>
-                        <FormControl>
-                          <div className="py-2">
-                            <Input
-                              {...field}
-                              className="w-fit"
-                              value={
-                                field.value ? new Date(field.value).toISOString().split('T')[0] : ''
-                              }
-                              onChange={(e) =>
-                                field.onChange(e.target.value ? new Date(e.target.value) : null)
-                              }
-                              type="date"
-                              autoComplete="off"
-                              placeholder={t_trees('node-death-date')}
-                              disabled={loading}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="bg-ocean-200/15 mx-auto my-3 h-1 w-full rounded" />
-                  <FormField
-                    control={form.control}
-                    name="gender"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{`${t_trees('node-gender')}*`}</FormLabel>
-                        <FormDescription className="mb-2 text-sm opacity-70">
-                          {t_trees('node-gender-description')}
-                        </FormDescription>
-                        <FormControl>
-                          <div className="py-2">
-                            <Select
-                              onValueChange={field.onChange}
-                              value={field.value || ''}
-                              disabled={loading}
-                            >
-                              <SelectTrigger>
-                                <SelectValue placeholder={'-'} />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="MALE">
-                                  {t_trees(
-                                    `${'node-gender-male'}${treeType === 'ANIMAL' ? '-animal' : ''}`
-                                  )}
-                                </SelectItem>
-                                <SelectItem value="FEMALE">
-                                  {t_trees(
-                                    `${'node-gender-female'}${treeType === 'ANIMAL' ? '-animal' : ''}`
-                                  )}
-                                </SelectItem>
-                                <SelectItem value="OTHER">
-                                  {t_trees('node-gender-other')}
-                                </SelectItem>
-                                <SelectItem value="UNSPECIFIED">
-                                  {t_trees('node-gender-unspecified')}
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
                           </div>
                         </FormControl>
                         <FormMessage />
@@ -455,11 +327,12 @@ export function NodeCreateModal({
                     )}
                   />
                 </div>
+
                 <div className="mt-6 flex gap-3">
                   <Button type="button" variant="ghost" onClick={onClose} disabled={loading}>
                     <span className="text-sm font-bold">{t_common('cancel')}</span>
                   </Button>
-                  <Button type="submit" disabled={loading && !form.formState.isValid}>
+                  <Button type="submit" disabled={loading}>
                     <div className="flex items-center space-x-3">
                       {loading && <LoaderIcon size={16} className="animate-spin" />}
                       <span className="text-sm font-bold">

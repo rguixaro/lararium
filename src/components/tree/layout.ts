@@ -756,6 +756,7 @@ export function computedLayout(nodes: Node[], edges: Edge[]): { nodes: Node[]; e
       // positionCoupleNodes assigns final X/Y downstream
       return {
         ...node,
+        draggable: false,
         targetPosition: Position.Top,
         sourcePosition: Position.Bottom,
         position: node.position ?? { x: 0, y: 0 },
@@ -952,6 +953,16 @@ export function createTreeLayout(
     if (u.spouseBId) unionsWithChildrenSpouseIds.add(u.spouseBId)
   }
 
+  const nodeById = new Map(effectiveNodes.map((n) => [n.id, n]))
+  const spouseOf = (nodeId: string): string | null => {
+    const u = unions.find(
+      (u) => u.spouseBId && !u.divorcedAt && (u.spouseAId === nodeId || u.spouseBId === nodeId)
+    )
+    if (!u) return null
+    const otherId = u.spouseAId === nodeId ? u.spouseBId! : u.spouseAId
+    return nodeById.get(otherId)?.fullName ?? null
+  }
+
   const treeNodes: Node[] = effectiveNodes.map((node) => {
     const edgesFrom = edges.filter((e) => e.fromNodeId === node.id)
     const edgesTo = edges.filter((e) => e.toNodeId === node.id)
@@ -971,6 +982,7 @@ export function createTreeLayout(
         generation: generations.get(node.id) ?? 0,
         hasUnionChildren: unionsWithChildrenSpouseIds.has(node.id),
         hasUnionParents: !!node.childOfUnionId,
+        spouseName: spouseOf(node.id),
       },
       position: { x: 0, y: 0 },
     }

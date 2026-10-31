@@ -26,7 +26,7 @@ export function ChildEdge(props: EdgeProps) {
     targetX,
     targetY,
     targetPosition,
-    borderRadius: 6,
+    borderRadius: 0,
   })
 
   return (

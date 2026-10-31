@@ -74,19 +74,6 @@ export default async function AboutPage() {
               app: (chunks) => <span className="text-pale-ocean font-extrabold">{chunks}</span>,
             })}
           </p>
-          <Link
-            href="https://github.com/rguixaro/lararium"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              'bg-pale-ocean text-ocean-400 hover:bg-neutral-50',
-              'mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-2.5',
-              'text-sm font-bold transition-colors duration-200'
-            )}
-          >
-            <Github size={18} />
-            {t_about('github-cta')}
-          </Link>
         </section>
 
         <section className="text-ocean-300 text-center text-sm">

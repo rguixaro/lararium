@@ -26,9 +26,8 @@ const defaultIconsByUserRole: Record<string, keyof typeof icons> = {
 const otherDefaultIcons: Record<string, keyof typeof icons> = {
   enabled: 'Mails',
   disabled: 'X',
-  ca: 'Languages',
-  es: 'Languages',
-  en: 'Languages',
+  ur: 'Languages',
+  en: 'Globe',
 }
 
 export const Icon: React.FC<IconProps> = ({
@@ -38,15 +37,16 @@ export const Icon: React.FC<IconProps> = ({
   size = 18,
   customIcons = {},
 }) => {
-  const key = type.toLowerCase()
+  const key = type?.toLowerCase() || ''
 
   const iconName =
     customIcons[key] ||
     defaultIconsByTreeType[key] ||
     defaultIconsByUserRole[key] ||
-    otherDefaultIcons[key]
+    otherDefaultIcons[key] ||
+    'Globe'
 
-  const LucideIcon = icons[iconName as keyof typeof icons] as LucideIcon
+  const LucideIcon = (icons[iconName as keyof typeof icons] || icons.Globe) as LucideIcon
 
   return <LucideIcon color={color} size={size} className={className} />
 }

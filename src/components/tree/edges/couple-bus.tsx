@@ -34,7 +34,7 @@ export function CoupleBusEdge(props: EdgeProps) {
   if (isStraight) {
     path = `M ${sourceX} ${sourceY} L ${targetX} ${targetY}`
   } else {
-    const offset = 16 + (hashStr(unionId) % 9) * 3
+    const offset = 24 + (hashStr(unionId) % 3) * 12
     const centerY = sourceY + offset
     ;[path] = getSmoothStepPath({
       sourceX,
@@ -44,7 +44,7 @@ export function CoupleBusEdge(props: EdgeProps) {
       targetY,
       targetPosition,
       centerY,
-      borderRadius: 6,
+      borderRadius: 0,
     })
   }
 

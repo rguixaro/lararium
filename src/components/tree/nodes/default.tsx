@@ -4,6 +4,7 @@ import { useState, useCallback, JSX, useEffect } from 'react'
 import { Position, Handle, NodeProps } from 'reactflow'
 import { Info, ZoomIn } from 'lucide-react'
 import { motion, Variants } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 import { Picture } from '@/ui'
 
@@ -22,6 +23,7 @@ interface StyledNodeProps {
   isExpanded?: boolean
   hasUnionChildren?: boolean
   hasUnionParents?: boolean
+  spouseName?: string | null
 }
 
 /**
@@ -107,6 +109,7 @@ const handleVariants = {
  * @returns {JSX.Element}
  */
 export function StyledNode({ data, isConnectable }: NodeProps<StyledNodeProps>): JSX.Element {
+  const t_trees = useTranslations('trees')
   const [isHovered, setIsHovered] = useState(false)
   const [hasMounted, setHasMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -118,6 +121,7 @@ export function StyledNode({ data, isConnectable }: NodeProps<StyledNodeProps>):
     isExpanded = false,
     hasUnionChildren = false,
     hasUnionParents = false,
+    spouseName = null,
   } = data
 
   const profilePicture = getProfilePicture(data.node)
@@ -269,9 +273,22 @@ export function StyledNode({ data, isConnectable }: NodeProps<StyledNodeProps>):
         />
       </motion.div>
       <div className="flex min-w-0 flex-1 flex-col items-start px-2">
-        <span className="relative z-10 line-clamp-2 w-full min-w-0 pr-1 text-left text-sm leading-tight font-bold">
+        <span
+          className={cn(
+            'relative z-10 line-clamp-2 w-full min-w-0 pr-1 text-start text-sm leading-tight',
+            hasUnionChildren ? 'font-bold' : 'font-normal'
+          )}
+        >
           {fullName}
         </span>
+        {spouseName && (
+          <span
+            dir="auto"
+            className="relative z-10 mt-0.5 w-full min-w-0 truncate text-start text-xs leading-relaxed font-medium opacity-80"
+          >
+            {t_trees('node-married-to', { name: fullName, spouse: spouseName })}
+          </span>
+        )}
         {alias && (
           <span
             className={cn(
