@@ -981,6 +981,7 @@ export function createTreeLayout(
         isExpanded: expandedNodes.has(node.id),
         generation: generations.get(node.id) ?? 0,
         hasUnionChildren: unionsWithChildrenSpouseIds.has(node.id),
+        isRootGeneration: (generations.get(node.id) ?? 0) === 0,
         hasUnionParents: !!node.childOfUnionId,
         spouseName: spouseOf(node.id),
       },

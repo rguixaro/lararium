@@ -23,6 +23,7 @@ interface StyledNodeProps {
   isExpanded?: boolean
   hasUnionChildren?: boolean
   hasUnionParents?: boolean
+  isRootGeneration?: boolean
   spouseName?: string | null
 }
 
@@ -122,6 +123,7 @@ export function StyledNode({ data, isConnectable }: NodeProps<StyledNodeProps>):
     hasUnionChildren = false,
     hasUnionParents = false,
     spouseName = null,
+    isRootGeneration = false,
   } = data
 
   const profilePicture = getProfilePicture(data.node)
@@ -276,7 +278,7 @@ export function StyledNode({ data, isConnectable }: NodeProps<StyledNodeProps>):
         <span
           className={cn(
             'relative z-10 line-clamp-2 w-full min-w-0 pr-1 text-start text-sm leading-tight',
-            hasUnionChildren ? 'font-bold' : 'font-normal'
+            isRootGeneration ? 'font-bold' : 'font-normal'
           )}
         >
           {fullName}

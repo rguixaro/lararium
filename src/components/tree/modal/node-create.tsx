@@ -30,12 +30,7 @@ interface NodeCreateModalProps {
   onClose: () => void
 }
 
-export function NodeCreateModal({
-  showModal,
-  form,
-  onCreate,
-  onClose,
-}: NodeCreateModalProps) {
+export function NodeCreateModal({ showModal, form, onCreate, onClose }: NodeCreateModalProps) {
   const t_common = useTranslations('common')
   const t_trees = useTranslations('trees')
 
@@ -173,6 +168,7 @@ export function NodeCreateModal({
         onClick={onClose}
       />
       <div
+        dir="ltr"
         className={cn(
           'text-ocean-400 fixed inset-x-0 bottom-0 z-50 transition-transform duration-300 ease-out sm:top-0 sm:right-0 sm:h-full',
           isDragging ? 'transition-none' : 'transition-transform duration-300',

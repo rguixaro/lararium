@@ -107,76 +107,32 @@ export const UpdateProfileSchema = z.object({
 
 export type UpdateProfileInput = z.TypeOf<typeof UpdateProfileSchema>
 
-const deathAfterBirth = (
-  data: { birthDate?: Date | null; deathDate?: Date | null },
-  ctx: z.RefinementCtx
-) => {
-  if (data.birthDate && data.deathDate && data.deathDate.getTime() <= data.birthDate.getTime()) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: 'error-death-before-birth',
-      path: ['deathDate'],
-    })
-  }
-}
-
 export const CreateTreeNodeSchema = z
   .object({
     treeId: z.string().min(1),
-    fullName: z.string().min(1, { message: 'full-name-required' }),
+    fullName: z.string().trim().min(1, { message: 'full-name-required' }),
     married: z.boolean().optional(),
     spouseName: z.string().trim().max(100).optional(),
     servingAs: z.string().optional().nullable(),
-    alias: z.string().max(16, { message: 'alias-too-long' }).optional().nullable(),
-    birthPlace: z.string().nullable().optional(),
-    birthDate: z.coerce.date().optional().nullable(),
-    deathPlace: z.string().nullable().optional(),
-    deathDate: z.coerce.date().optional().nullable(),
-    gender: z.enum(TreeNodeGender).optional(),
-    createdAt: z.coerce.date().optional(),
-    updatedAt: z.coerce.date().optional(),
-    edgesFrom: z
-      .array(
-        z.object({
-          id: z.string(),
-          fromNodeId: z.string(),
-          toNodeId: z.string(),
-          type: z.enum(TreeEdgeType),
-        })
-      )
-      .optional()
-      .nullable(),
-    edgesTo: z
-      .array(
-        z.object({
-          id: z.string(),
-          fromNodeId: z.string(),
-          toNodeId: z.string(),
-          type: z.enum(TreeEdgeType),
-        })
-      )
-      .optional()
-      .nullable(),
   })
-  .superRefine(deathAfterBirth)
+  .superRefine((data, ctx) => {
+    if (data.married && !data.spouseName) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'spouse-name-required',
+        path: ['spouseName'],
+      })
+    }
+  })
 
 export type CreateTreeMemberInput = z.TypeOf<typeof CreateTreeNodeSchema>
 
-export const UpdateTreeNodeSchema = z
-  .object({
-    id: z.string().min(1),
-    treeId: z.string().min(1),
-    fullName: z.string().min(1, { message: 'full-name-required' }),
-    servingAs: z.string().optional().nullable(),
-    alias: z.string().max(16, { message: 'alias-too-long' }).optional().nullable(),
-    birthPlace: z.string().nullable().optional(),
-    birthDate: z.coerce.date().optional().nullable(),
-    deathPlace: z.string().nullable().optional(),
-    deathDate: z.coerce.date().optional().nullable(),
-    gender: z.enum(TreeNodeGender).optional(),
-    biography: z.string().nullable().optional(),
-  })
-  .superRefine(deathAfterBirth)
+export const UpdateTreeNodeSchema = z.object({
+  id: z.string().min(1),
+  treeId: z.string().min(1),
+  fullName: z.string().trim().min(1, { message: 'full-name-required' }),
+  servingAs: z.string().optional().nullable(),
+})
 
 export type UpdateTreeNodeInput = z.TypeOf<typeof UpdateTreeNodeSchema>
 
