@@ -54,7 +54,7 @@ export const CreateTreeSchema = z.object({
   name: z
     .string()
     .min(3, { message: 'tree-name-too-short' })
-    .max(24, { message: 'tree-name-too-long' }),
+    .max(100, { message: 'tree-name-too-long' }),
   newsletter: z.boolean().optional(),
   members: z
     .array(
